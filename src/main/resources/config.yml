@@ -1,0 +1,261 @@
+bot:
+  # Токен бота от @BotFather
+  token: ""
+  # Юзернейм бота (не критично, можно оставить как есть)
+  username: ""
+
+admins:
+  - username: ""
+    id: ""
+
+support:
+  # Ссылка на чат с поддержкой
+  url: ""
+  # Текст в меню поддержки
+  text: "По любым вопросам покупки пишите в чат поддержки!"
+
+agreements:
+  # Пользовательское соглашение и конфеденциальность
+  enabled: true
+  privacy:
+    url: "https://example.com/privacy"
+    text: "Политика конфиденциальности"
+  terms:
+    url: "https://example.com/terms"
+    text: "Пользовательское соглашение"
+
+payment:
+  enabled: false
+  sandbox: true
+  rollypay:
+    terminal-id: ""
+    api-key: ""
+    webhook-secret: ""
+    api-url: ""
+  success-url: ""
+  fail-url: ""
+  support-url: ""
+
+products:
+  "Подписка на 1 месяц":
+    name: "Подписка на 1 месяц"
+    price: 99
+    command: "give {player} diamond 1"
+  "Подписка на 2 месяца":
+    name: "Подписка на 2 месяца"
+    price: 189
+    command: "give {player} diamond 2"
+  "Подписка на 3 месяца":
+    name: "Подписка на 3 месяца"
+    price: 249
+    command: "give {player} diamond 3"
+
+#  Сообщения бота. Доступные плейсхолдеры:
+#  {nick} {country} {purchases} {promos} {date} {name} {price}
+#  {quantity} {sum} {total} {items} {products} {cart} {order}
+#  {promo} {percent} {saved} {text} {count} {period} {amount}
+#  {username} {region} {admin} {page} {pages} {left} {list}
+#  {duration} {activations}
+
+messages:
+  banned: "🚫 Вы заблокированы на сервере!"
+  agreement-privacy: |-
+    📄 {text}.
+
+    Откройте документ по кнопке ниже. Когда прочитаете — нажмите «Я прочитал» или «Далее».
+  agreement-terms: |-
+    📄 {text}.
+
+    Откройте документ по кнопке ниже. Когда прочитаете — нажмите «Я прочитал» или «Далее».
+  agreement-blocked: "🚫 Чтобы покупать товары, вы должны прочитать и принять Политику конфиденциальности и Пользовательское соглашение!"
+  pay-wait-rollypay: |-
+    💳 Заказ #{order}
+
+    Сумма: {total}р
+
+    Оплатите по кнопке ниже. Товары будут выданы автоматически после подтверждения оплаты.
+  pay-success: "🎉 Оплата заказа #{order} на сумму {total}р прошла успешно! Товары выданы."
+  pay-failed: "❌ Оплата заказа #{order} не прошла. Попробуйте снова, добавив товары в корзину."
+  pay-error: "❌ Не удалось создать платёж. Попробуйте позже или обратитесь в поддержку."
+  admin-order-auto-confirmed: "✅ Заказ #{order} автоматически оплачен через RollyPay.\nИгрок: {nick}\nСумма: {total}р"
+  history-line-status: "📦 {items} — {total}р — {date}\nСтатус: {status}"
+  choose-region: "🌍 Выберите регион:"
+  enter-nick: "Введите свой ник с сервера:"
+  nick-invalid: "❌ Неверный ник! Допустимы буквы, цифры и символ «_». Длина от 3 до 16 символов."
+  nick-taken: "❌ Этот ник уже зарегистрирован другим игроком."
+  profile: |-
+    👤 Ваш профиль
+
+    Ник: {nick}
+    Страна: {country}
+    Количество покупок: {purchases}
+    Количество активированных промокодов: {promos}
+    Дата и время регистрации: {date}
+  shop: |-
+    🛒 Магазин
+
+    {products}
+
+    Корзина: {cart}
+  shop-product-line: "{name} - {price}р"
+  cart-empty: "пуста"
+  cart: |-
+    🧺 Ваша корзина:
+
+    {items}
+
+    Итого: {total}р
+    {discount_line}
+  cart-item-line: "{name} x{quantity} - {sum}р"
+  cart-discount: "Промокод «{promo}»: -{percent}% (экономия {saved}р)"
+  cart-item-hint: "Нажмите ❌, чтобы убрать товар из корзины"
+  promo-item-hint: "Нажмите ❌, чтобы удалить промокод"
+  added-to-cart: "✅ {name} добавлен в корзину (x{quantity})"
+  pay-wait: |-
+    ⏳ Подождите! С вами свяжется администратор для оплаты.
+
+    Заказ: #{order}
+    Итого: {total}р
+  active-order: "⏳ У вас уже есть активный заказ #{order}, дождитесь его завершения!"
+  order-taken-player: "✅ Администратор взялся за ваш заказ! Вы можете ему писать в чат!"
+  admin-order-notify: |-
+    📦 Игрок оформил заказ и перешел в стадию оплаты
+
+    Заказ: #{order}
+    Игрок: {nick}
+    Регион: {region}
+    Товары:
+    {items}
+    Итого: {total}р
+    {promo_line}
+  admin-order-taken-by-other: "Заказ #{order} уже взят администратором {admin}."
+  order-status-taken-by-me: "✅ Вы взяли заказ #{order}. Напишите игроку и подтвердите оплату после получения средств."
+  admin-write-prompt: "✉️ Что вы хотите написать игроку {nick}? Просто напишите сообщение в чат."
+  admin-write-sent: "✅ Сообщение отправлено игроку {nick}!"
+  player-message-from-admin: "✉️ Сообщение от администратора:\n{text}"
+  thanks-order: "🎉 Спасибо за заказ!"
+  order-cancelled: "❌ Оплата заказа #{order} отменена."
+  order-notfound: "❌ Заказ не найден."
+  order-not-yours: "❌ Вы не можете управлять этим заказом."
+  order-already-taken: "✅ Вы уже взяли этот заказ"
+  order-confirmed-admin: "✅ Заказ #{order} подтверждён, товары выданы игроку."
+  order-cancelled-admin: "❌ Заказ #{order} отменён."
+  order-processed-admin: "Заказ #{order} обработан администратором {admin}."
+  promo-enter: "🎟 Введите промокод:"
+  promo-not-found: "❌ Промокод не найден."
+  promo-expired: "❌ Срок действия промокода истёк."
+  promo-exhausted: "❌ Все активации промокода использованы."
+  promo-already-used: "❌ Вы уже активировали этот промокод."
+  promo-activated: "✅ Промокод «{promo}» активирован! Скидка {percent}% будет применена к вашему заказу."
+  history: |-
+    📜 Ваши покупки:
+
+    {history}
+  history-line: "{items} - {total}р - {date}"
+  history-empty: "У вас пока нет покупок."
+  support: "🎧 Поддержка\n\n{text}"
+  admin-menu: "🛠 Админ панель:"
+  analytics-period: "📊 За какой период вы хотите посмотреть заработок?"
+  analytics-result: "📊 Заработок за период «{period}»: {amount}р (заказов: {count})"
+  analytics-none: "📊 За период «{period}» подтверждённых заказов нет."
+  period-1m: "1 месяц"
+  period-3m: "3 месяца"
+  period-9m: "9 месяцев"
+  period-1y: "1 год"
+  period-all: "Все"
+  ban-prompt: |-
+    ⛔ Какого пользователя вы хотите забанить?
+
+    {list}
+
+    Скопируйте юзернейм и вставьте его в чат.
+  ban-user-line: "{username} - {nick}"
+  ban-done: "✅ Пользователь {username} ({nick}) забанен."
+  ban-notfound: "❌ Пользователь {username} не найден."
+  ban-already: "❌ Пользователь {username} уже заблокирован."
+  banned-list: |-
+    🚫 Все заблокированные:
+
+    {list}
+
+    Хотите разблокировать? Введите юзернейм в чат.
+  banned-empty: "Заблокированных пользователей нет."
+  unban-done: "✅ Пользователь {username} разблокирован."
+  unban-notfound: "❌ Пользователь {username} не найден в списке заблокированных."
+  broadcast-prompt: "📢 Введите текст сообщения:"
+  broadcast-confirm: |-
+    📢 Вы точно хотите отправить это сообщение:
+
+    {text}
+  broadcast-done: "✅ Сообщение отправлено {count} пользователям."
+  broadcast-user: "📢 Сообщение от администрации:\n{text}"
+  promo-create-name: "🎟 Введите название промокода:"
+  promo-create-name-taken: "❌ Промокод с таким названием уже существует."
+  promo-create-percent: "💯 Введите процент скидки (число от 1 до 100):"
+  promo-create-activations: "🔢 На сколько активаций будет промокод? (число или «-» для безлимита):"
+  promo-create-duration: "⏳ Как долго будет действовать промокод? Введите в формате: 1d 0h 0m"
+  promo-create-done: |-
+    ✅ Вы успешно создали промокод!
+
+    Название: {promo}
+    Скидка: {percent}%
+    Активаций: {activations}
+    Действует: {duration}
+  promo-invalid-format: "❌ Неверный формат. Попробуйте ещё раз."
+  promo-list: |-
+    📋 Все действующие промокоды:
+
+    {list}
+  promo-list-line: "{name} - {percent}% (активаций: {left})"
+  promo-list-empty: "Действующих промокодов нет."
+  promo-delete-confirm: "❓ Вы точно хотите удалить промокод «{promo}»?"
+  promo-deleted: "✅ Промокод «{promo}» удалён."
+  orders-active: |-
+    📋 Еще активные заказы:
+
+    {list}
+  orders-active-line: "#{order} - {nick} - {items} ({total}р)"
+  orders-none: "Активных заказов нету."
+  order-page: "Страница {page}/{pages}"
+
+#  Кнопки бота
+buttons:
+  region-russia: "🇷🇺 Россия"
+  region-other: "🌍 Другая страна"
+  agree-read: "✅ Я прочитал"
+  agree-next: "➡️ Далее"
+  agree-privacy: "📄 Политика конфиденциальности"
+  agree-terms: "📄 Пользовательское соглашение"
+  pay-rollypay: "💳 Перейти к оплате"
+  shop: "🛍 Открыть магазин"
+  promo: "🎟 Ввести промокод"
+  history: "📜 История покупок"
+  change-region: "🌍 Изменить страну"
+  support: "🎧 Поддержка"
+  back: "◀️ Назад"
+  cart: "🛒 Корзина"
+  pay: "💳 Оплатить"
+  delete: "❌"
+  admin-menu: "🛠 Админ панель"
+  analytics: "📊 Аналитика заказов"
+  create-promo: "🎟 Создать промокод"
+  promo-list: "📋 Действующие промокоды"
+  broadcast: "📢 Сообщение всем"
+  ban: "⛔ Блокировка пользователя"
+  banned-list: "🚫 Лист заблокированных"
+  take-order: "✅ Взять заказ"
+  next-order: "🔀 Перейти к другому игроку"
+  write-player: "✉️ Написать игроку"
+  confirm-payment: "✅ Подтвердить оплату"
+  cancel-payment: "❌ Отменить оплату"
+  yes: "✅ Да"
+  no: "❌ Нет"
+  exit-menu: "🚪 Выйти в меню"
+  prev-page: "⬅️ Предыдущая страница"
+  next-page: "➡️ Следующая страница"
+  order-view: "📦 Заказ"
+  analytics-1m: "1 месяц"
+  analytics-3m: "3 месяца"
+  analytics-9m: "9 месяцев"
+  analytics-1y: "1 год"
+  analytics-all: "Все"

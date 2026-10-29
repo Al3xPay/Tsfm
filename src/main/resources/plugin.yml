@@ -1,0 +1,15 @@
+name: Tsfm
+version: 1.0.0
+main: Al3xPay.Tsfm.Tsfm
+api-version: 1.16
+author: Al3xPay
+description: TelegramShopForMinecraft — магазин услуг сервера через Telegram-бота
+commands:
+  tsfm:
+    description: Основная команда плагина
+    aliases: [shopbot]
+    usage: /tsfm reload
+permissions:
+  tsfm.reload:
+    description: Право на перезагрузку плагина
+    default: op
